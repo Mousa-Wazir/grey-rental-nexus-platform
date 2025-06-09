@@ -15,7 +15,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="text-center text-white max-w-5xl mx-auto px-6">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-slate-50">
+          <h1 className="font-bold mb-6 leading-tight text-slate-50 md:text-5xl text-2xl">
             Rent or Buy Local Products{' '}
             <span className="text-slate-50">with Confidence</span>
           </h1>
