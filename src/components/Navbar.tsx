@@ -10,6 +10,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
+    { name: 'Products', path: '/products' },
     { name: 'About Us', path: '/about' },
     { name: 'Contact Us', path: '/contact' },
   ];
@@ -34,7 +35,7 @@ const Navbar = () => {
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(link.path)
                     ? 'bg-primary text-white'
-                    : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                    : 'text-gray-700 hover:text-white hover:bg-black'
                 }`}
               >
                 {link.name}
@@ -45,7 +46,7 @@ const Navbar = () => {
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-3">
             <Link to="/nadra-verification">
-              <Button variant="outline" size="sm" className="text-xs">
+              <Button className="bg-green-800 text-white hover:bg-green-600 text-xs">
                 <Shield className="h-3 w-3 mr-1" />
                 NADRA Verify
               </Button>
@@ -56,7 +57,7 @@ const Navbar = () => {
             <Button variant="ghost" size="sm">
               <ShoppingCart className="h-4 w-4" />
             </Button>
-            <Link to="/auth">
+            <Link to="/dashboard">
               <Button variant="ghost" size="sm">
                 <User className="h-4 w-4 mr-1" />
                 Login
@@ -92,7 +93,7 @@ const Navbar = () => {
                   className={`block px-3 py-2 rounded-md text-base font-medium ${
                     isActive(link.path)
                       ? 'bg-primary text-white'
-                      : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                      : 'text-gray-700 hover:text-white hover:bg-black'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -100,7 +101,7 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="pt-4 space-y-2">
-                <Link to="/auth" className="block">
+                <Link to="/dashboard" className="block">
                   <Button variant="outline" className="w-full">
                     Login
                   </Button>
@@ -111,7 +112,7 @@ const Navbar = () => {
                   </Button>
                 </Link>
                 <Link to="/nadra-verification" className="block">
-                  <Button variant="outline" className="w-full">
+                  <Button className="w-full bg-green-800 text-white hover:bg-green-600">
                     <Shield className="h-4 w-4 mr-2" />
                     NADRA Verify
                   </Button>

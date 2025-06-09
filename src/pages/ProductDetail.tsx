@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 import { products } from '@/data/products';
 
 const ProductDetail = () => {
@@ -16,6 +17,9 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
+  const [cartItems, setCartItems] = useState(0);
+  const [message, setMessage] = useState('');
+  const [showMessageForm, setShowMessageForm] = useState(false);
   
   // Find product by ID
   const product = products.find(p => p.id === parseInt(id || '0'));
@@ -44,6 +48,20 @@ const ProductDetail = () => {
   ];
 
   const relatedProducts = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+
+  // Determine if product is rentable (if price contains '/day')
+  const isRentable = product.price.includes('/day');
+
+  const handleAddToCart = () => {
+    setCartItems(cartItems + quantity);
+    console.log('Added to cart:', { product: product.name, quantity });
+  };
+
+  const handleSendMessage = () => {
+    console.log('Message sent:', message);
+    setMessage('');
+    setShowMessageForm(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -192,14 +210,56 @@ const ProductDetail = () => {
 
             {/* Action Buttons */}
             <div className="space-y-3">
-              <Button className="w-full localena-yellow text-black font-medium">
-                <ShoppingCart className="h-4 w-4 mr-2" />
-                Rent Now
+              {isRentable ? (
+                <div className="space-y-2">
+                  <Button className="w-full localena-yellow text-black font-medium">
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Rent Now
+                  </Button>
+                  <Button variant="outline" className="w-full">
+                    Buy Now
+                  </Button>
+                </div>
+              ) : (
+                <Button className="w-full localena-yellow text-black font-medium">
+                  <ShoppingCart className="h-4 w-4 mr-2" />
+                  Buy Now
+                </Button>
+              )}
+              
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={handleAddToCart}
+              >
+                Add to Cart ({cartItems})
               </Button>
-              <Button variant="outline" className="w-full">
+              
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => setShowMessageForm(!showMessageForm)}
+              >
                 <MessageCircle className="h-4 w-4 mr-2" />
-                WhatsApp Contact
+                Send Message
               </Button>
+
+              {/* Optional Message Form */}
+              {showMessageForm && (
+                <div className="space-y-3 p-4 border rounded-lg bg-gray-50">
+                  <Textarea
+                    placeholder="Type your message to the seller..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="w-full"
+                  />
+                  <div className="flex space-x-2">
+                    <Button onClick={handleSendMessage} size="sm">Send</Button>
+                    <Button variant="outline" onClick={() => setShowMessageForm(false)} size="sm">Cancel</Button>
+                  </div>
+                </div>
+              )}
+              
               <div className="flex space-x-2">
                 <Button variant="ghost" size="icon">
                   <Heart className="h-4 w-4" />
