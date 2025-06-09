@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MessageCircle, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -24,17 +25,21 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border overflow-hidden">
-      <div className="aspect-square overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-        />
-      </div>
+      <Link to={`/product/${product.id}`}>
+        <div className="aspect-square overflow-hidden">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </Link>
       
       <div className="p-4">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="font-semibold text-primary text-sm line-clamp-2">{product.name}</h3>
+          <Link to={`/product/${product.id}`}>
+            <h3 className="font-semibold text-primary text-sm line-clamp-2 hover:underline">{product.name}</h3>
+          </Link>
           {product.verified && (
             <Badge className="localena-green text-white text-xs">Verified</Badge>
           )}
@@ -54,9 +59,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <p className="text-sm text-gray-500 mb-4">{product.seller}</p>
         
         <div className="space-y-2">
-          <Button className="w-full localena-yellow text-black font-medium">
-            Rent Now
-          </Button>
+          <Link to={`/product/${product.id}`}>
+            <Button className="w-full localena-yellow text-black font-medium">
+              View Details
+            </Button>
+          </Link>
           <Button variant="outline" className="w-full" size="sm">
             <MessageCircle className="h-4 w-4 mr-2" />
             WhatsApp Contact
