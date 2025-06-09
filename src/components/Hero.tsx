@@ -1,19 +1,13 @@
-
 import React from 'react';
 import { ArrowRight, Shield, Users, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
 const Hero = () => {
-  return (
-    <div className="relative h-[700px] bg-gradient-to-r from-gray-900 to-gray-700 overflow-hidden">
+  return <div className="relative h-[700px] bg-gradient-to-r from-gray-900 to-gray-700 overflow-hidden">
       {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop&q=80')`
-        }}
-      />
+      <div className="absolute inset-0 bg-cover bg-center" style={{
+      backgroundImage: `url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop&q=80')`
+    }} />
       
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50" />
@@ -21,9 +15,9 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="text-center text-white max-w-5xl mx-auto px-6">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-slate-50">
             Rent or Buy Local Products{' '}
-            <span className="text-yellow-400">with Confidence</span>
+            <span className="text-slate-50">with Confidence</span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed max-w-3xl mx-auto">
@@ -72,8 +66,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Hero;
