@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, ShoppingCart, User, Menu, X } from 'lucide-react';
+import { Search, ShoppingCart, User, Menu, X, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
@@ -10,9 +10,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Products', path: '/products' },
+    { name: 'Categories', path: '/products' },
     { name: 'About Us', path: '/about' },
     { name: 'Contact Us', path: '/contact' },
+    { name: 'Track Order', path: '/track-order' },
+    { name: 'Help Center', path: '/help' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -27,7 +29,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -44,19 +46,30 @@ const Navbar = () => {
           </div>
 
           {/* Right side buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button className="localena-yellow text-black font-medium">
-              NADRA Verify
-            </Button>
+          <div className="hidden md:flex items-center space-x-3">
+            <Link to="/nadra-verification">
+              <Button variant="outline" size="sm" className="text-xs">
+                <Shield className="h-3 w-3 mr-1" />
+                NADRA Verify
+              </Button>
+            </Link>
             <Button variant="ghost" size="sm">
               <Search className="h-4 w-4" />
             </Button>
             <Button variant="ghost" size="sm">
-              <User className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="sm">
               <ShoppingCart className="h-4 w-4" />
             </Button>
+            <Link to="/auth">
+              <Button variant="ghost" size="sm">
+                <User className="h-4 w-4 mr-1" />
+                Login
+              </Button>
+            </Link>
+            <Link to="/auth?tab=signup">
+              <Button className="localena-yellow text-black font-medium text-sm">
+                Sign Up
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -90,9 +103,22 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="pt-4 space-y-2">
-                <Button className="w-full localena-yellow text-black font-medium">
-                  NADRA Verify
-                </Button>
+                <Link to="/auth" className="block">
+                  <Button variant="outline" className="w-full">
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/auth?tab=signup" className="block">
+                  <Button className="w-full localena-yellow text-black font-medium">
+                    Sign Up
+                  </Button>
+                </Link>
+                <Link to="/nadra-verification" className="block">
+                  <Button variant="outline" className="w-full">
+                    <Shield className="h-4 w-4 mr-2" />
+                    NADRA Verify
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
