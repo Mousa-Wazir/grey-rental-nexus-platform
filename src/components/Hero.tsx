@@ -27,13 +27,13 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link to="/auth">
-              <Button className="localena-yellow text-black font-semibold px-8 py-4 -mx-0 text-xs">
+              <Button className="localena-yellow px-8 py-4 -mx-0 text-xs text-slate-950 font-semibold bg-amber-500 hover:bg-amber-400">
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/nadra-verification">
-              <Button className="bg-white text-black hover:bg-gray-50 font-semibold py-[20px] gap-y-px text-center text-xs">
+              <Button className="bg-white hover:bg-gray-50 py-[20px] gap-y-px text-center text-xs text-slate-950">
                 <Shield className="mr-2 h-5 w-5" />
                 Verify Identity to Build Trust
               </Button>
